@@ -2,6 +2,7 @@ import React from "react";
 
 const SubmitButton = ({
   functionProp,
+  background,
   id,
   name,
   width,
@@ -10,7 +11,9 @@ const SubmitButton = ({
   marginLeft,
   marginRight,
   absolute,
-  rounded
+  rounded,
+  textColor,
+  onHover
 }) => {
 
   const handleClick = () => {
@@ -19,14 +22,17 @@ const SubmitButton = ({
   return (
     <div className={`flex justify-center   ${width}`}>
       <button
-        className={`text-center font-extrabold mt-10 
-           bg-yellow-400 hover:bg-blue-200
+        className={`text-center font-extrabold 
+          ${background}
+          ${onHover}
              h-12
              ${rounded}
             ${marginTop}
             ${marginRight}
+            ${marginLeft}
             ${width}
             ${absolute}
+            ${textColor}
              mb-6`}
         onClick={handleClick}
       >
@@ -37,3 +43,5 @@ const SubmitButton = ({
 };
 
 export default SubmitButton;
+
+
