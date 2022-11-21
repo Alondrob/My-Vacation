@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import HeaderLayout from "../../components/header/HeaderLayout";
+import HostPropertyCard from "../../components/shared-components/HostPropertyCard";
 import PlaceCard from "../../components/shared-components/PlaceCard";
 import { getUserProperties } from "../../redux/api-requests/userRequests";
 
@@ -14,28 +15,29 @@ const HostPage = () => {
     dispatch(getUserProperties(user));
   }, []);
 
-
+console.log(userProperties)
 
   return (
     <div>
       <HeaderLayout />
-      <div>
-        <div className="text-center font-extrabold italic mt-4 ">
+      <div className="bg-night-theme w-full h-screen">
+        <div className="bg-night-theme text-center font-extrabold italic mt-0 ">
           {`Hey ${user.user.userName}!, Check out your hosting spots !!`}
         </div>
 
-        <div className="grid grid-cols-3 mt-2">
+        <div className=" grid grid-cols-2 px-18 gap-4 ml-3 mb-24 bg-night-theme ">
           {userProperties.map((item, key) => (
-            <PlaceCard
-              marginTop={"mt-3"}
-              key={key}
-              id={item._id}
-              name={item.name}
-              city={item.city}
-              state={item.state}
-              country={item.country}
-              pricePerNight={item.pricePerNight}
-            />
+            <HostPropertyCard property={item}/>
+            // <PlaceCard
+            //   marginTop={"mt-3"}
+            //   key={key}
+            //   id={item._id}
+            //   name={item.name}
+            //   city={item.city}
+            //   state={item.state}
+            //   country={item.country}
+            //   pricePerNight={item.pricePerNight}
+            // />
           ))}
         </div>
       </div>

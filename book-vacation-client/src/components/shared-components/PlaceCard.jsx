@@ -19,6 +19,7 @@ const PlaceCard = ({
   page,
   key,
   id,
+  property,
   name,
   city,
   state,
@@ -32,16 +33,18 @@ const PlaceCard = ({
   const [renderPage, setRenderPage] = useState(false);
   const user = useSelector((state) => state.user.user);
   const userProperties = useSelector((state) => state.user.userProperties);
-
+  const selectedProperty = userProperties.filter((item) => item._id === id);
+  console.log(selectedProperty)
   const dateConverter = (dateStr) => {
     const convertedDate = dateStr.split(/[T]/)[0].split(/[-]/);
     return convertedDate[2] + "-" + convertedDate[2] + "-" + convertedDate[0];
   };
 
-  const uploadPics = (id) => {
-    navigate(`/image/${id}`);
-  };
+  const checkImages = () => {
+    if (selectedProperty[0]?.image.length > 0) return true;
+ }
 
+  console.log(property)
   const handleClick = (name, id) => {
     switch (name) {
       case "Edit":
@@ -68,14 +71,13 @@ const PlaceCard = ({
     }
   };
   return (
-    // <div className="">
-
-    <div>
-      <Image id={id} />
-      <PropertyDetails id={id} />
+    <div className=" h-36 mb-24">
+      {checkImages() && <Image id={id} />}
+   
+      <PropertyDetails id={id} /> 
       <div className="bg-black w-96 ml-3 flex justify-center">
         <div
-          className="grid grid-cols-2 gap-4
+          className="grid grid-cols-3 gap-4
        text-center content-center"
         >
           {page != "guest" && (
@@ -106,6 +108,21 @@ const PlaceCard = ({
               onHover={"hover:bg-gray-500"}
             />
           )}
+          {page != "guest" && (
+            <SubmitButton
+              functionProp={handleClick}
+              id={id}
+              name={"Upload Photos"}
+              width={"w-20"}
+              marginTop={"mt-0"}
+              marginLeft={"ml-3"}
+              rounded={"rounded-small"}
+              background={"bg-black"}
+              textColor={"text-white"}
+              onHover={"hover:bg-gray-500"}
+            />
+          )}
+          
           {page === "guest" && (
             <SubmitButton
               functionProp={handleClick}

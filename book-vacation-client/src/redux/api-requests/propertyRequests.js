@@ -88,5 +88,5 @@ export const uploadImage = async (formData) => {
       },
     }
   );
-  return console.log(response.data);
+  return alert("Photo uploaded successfully!");
 };
