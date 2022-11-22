@@ -25,7 +25,7 @@ const PropertyInputField = ({
   return (
     <div>
       {isDescription() ? (
-        <div className="flex justify-center ml-4 mt-0 mb-2">
+        <div className="flex justify-center ml-4 mt-0 ">
           <textarea
             className={` block  italic  hover:bg-red-200 
             font-bold rounded-md border-2

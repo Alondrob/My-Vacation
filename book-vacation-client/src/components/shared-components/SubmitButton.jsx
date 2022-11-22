@@ -5,6 +5,7 @@ const SubmitButton = ({
   background,
   id,
   name,
+  border,
   width,
   marginTop,
   marginBottom,
@@ -23,6 +24,7 @@ const SubmitButton = ({
     <div className={`flex justify-center   ${width}`}>
       <button
         className={`text-center font-extrabold 
+        ${border}
           ${background}
           ${onHover}
              h-12

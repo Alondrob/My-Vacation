@@ -5,7 +5,7 @@ import Feed from "../../components/layouts/Feed";
 const Main = () => {
   return (
     <>
-      <HeaderLaout/>
+      <HeaderLaout />
       <Feed />
     </>
   );

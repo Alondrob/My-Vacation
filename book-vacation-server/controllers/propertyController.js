@@ -67,6 +67,7 @@ const deleteProperty = async (req, res) => {
 };
 
 const bookProperty = async (req, res) => {
+  console.log("hitting the route")
   const user = await UserModel.findById(req.user._id).exec();
   const property = await PropertyModel.findById(req.body.id).exec();
   const bookedDatesArray = bookedDates(req.body.fromDate, req.body.toDate);

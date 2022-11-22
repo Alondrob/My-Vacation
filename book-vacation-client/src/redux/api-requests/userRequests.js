@@ -89,13 +89,13 @@ export const getUserBookings = createAsyncThunk(
 
 export const bookProperty = createAsyncThunk(
   "user/bookProperty",
-  async (property) => {
-    console.log("property", property);
+  async (bookingData) => {
+    console.log("property", bookingData);
     const user = JSON.parse(localStorage.getItem("user"));
     console.log("user", user.token);
     const response = await axios.post(
       apiRoutes.user.bookPropertyRoute(),
-      property,
+      bookingData,
       {
         headers: {
           "Content-type": "Application/json",

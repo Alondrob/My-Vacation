@@ -8,13 +8,14 @@ import {
 
 const Image = ({ id }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const userProperties = useSelector((state) => state.user.userProperties);
-  const selectedProperty = userProperties.filter((item) => item._id === id);
+  const properties = useSelector((state) => state.property.properties);
+  const selectedProperty = properties.filter((item) => item._id === id);
   const images = selectedProperty[0].image;
 
   const handleClick = (id) => {
     // navigate(`/image/${id}`);
   };
+
 
   const nextSlide = () => {
     setCurrentSlide(currentSlide === images.length - 1 ? 0 : currentSlide + 1);
@@ -28,7 +29,6 @@ const Image = ({ id }) => {
     return null;
   }
 
-  console.log(images.length);
   return (
     <>
       {images.length > 0 && (

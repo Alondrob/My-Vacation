@@ -25,7 +25,7 @@ console.log(userProperties)
           {`Hey ${user.user.userName}!, Check out your hosting spots !!`}
         </div>
 
-        <div className=" grid grid-cols-2 px-18 gap-4 ml-3 mb-24 bg-night-theme ">
+        <div className=" grid grid-cols-3 px-18 gap-4 ml-2 mb-24 bg-night-theme ">
           {userProperties.map((item, key) => (
             <HostPropertyCard property={item}/>
             // <PlaceCard

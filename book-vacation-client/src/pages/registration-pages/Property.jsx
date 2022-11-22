@@ -10,16 +10,23 @@ import HeaderLayout from "../../components/header/HeaderLayout";
 import DateSearchBar from "../../components/shared-components/DateSearchBar";
 import SubmitButton from "../../components/shared-components/SubmitButton";
 import PropertyInputField from "../../components/shared-components/PropertyInputField";
+import Image from "../../components/shared-components/Image";
+import FormField from "../../components/shared-components/FormField";
 
 const Property = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { property, loading, error } = useSelector(selectProperties);
+  const [checkout, setCheckout] = useState(false);
   const [bookingData, setBookingData] = useState({
     fromDate: "",
     toDate: "",
     guests: null,
+    cardNumber: "",
+    cardHolder: "",
+    billingZipCode: "",
+    cardCvc: "",
   });
 
   useEffect(() => {
@@ -37,71 +44,148 @@ const Property = () => {
       case "guests":
         setBookingData({ ...bookingData, guests: value });
         break;
+      case "creditNumber":
+        setBookingData({ ...bookingData, creditNumber: value });
+        break;
+      case "cardHolder":
+        setBookingData({ ...bookingData, cardHolder: value });
+        break;
+      case "billingZipCode":
+        setBookingData({ ...bookingData, billingZipCode: value });
+        break;
+      case "cvc":
+        setBookingData({ ...bookingData, cardCvc: value });
+        break;
     }
   };
 
   const handleSubmit = () => {
     let booking = {
       id: property._id,
-      fromDate: bookingData.fromDate ,
-      toDate: bookingData.toDate ,
-      guests: bookingData.guests ,
+      fromDate: bookingData.fromDate,
+      toDate: bookingData.toDate,
+      guests: bookingData.guests,
+      cardNumber: bookingData.cardNumber,
+      cardHolderName: bookingData.cardHolder,
+      billingZipCode: bookingData.billingZipCode,
+      cardCvc: bookingData.cardCvc,
     };
     dispatch(bookProperty(booking));
-    navigate("/guest-page");
+    // navigate("/guest-page");
   };
 
   return (
     <div>
-      {error && <div>{error}</div>}
-      {loading && <div>Loading...</div>}
       <HeaderLayout />
-      {!loading && property && (
-        <div className="grid grid-cols-4 h-screen bg-gray-400">
-          <div>
-            <div
-              className="max-w-sm border-4 border-blue-200 
-             absolute left-4 space-x-12 mt-4 "
-            >
-              <img
-                className=" text-center w-96  rounded-md h-4/6"
-                src={property.image}
-              />
-              <p className="h-16">{property.name}</p>
-            </div>
+      <div className=" w-full h-full grid grid-cols-2  bg-gray-400">
+        <div className="mt-24 ml-36">
+          <Image id={params.id} />
+          <div className="bg-black text-white  h-20 w-96 ml-3">
+            <p className="ml-12 font-bold">{property?.name}</p>
+            <p className="ml-12 font-bold">
+              Price Per Night: ${property?.pricePerNight}
+            </p>
+            <p className="ml-12 font-bold">Guests: {property?.guests}</p>
           </div>
-          <div></div>
-          <div className="block mt-24 ">
-            <h2 className="text-center font-extrabold">From</h2>
-            <PropertyInputField
-              type={"date"}
-              stateName={"fromDate"}
-              name={"From"}
+        </div>
+
+        <div className="w-full h-screen block mt-20  ">
+          <h2 className="text-center font-extrabold">From</h2>
+          <FormField
+            type={"date"}
+            stateName={"fromDate"}
+            name={"From"}
+            width={"w-80"}
+            height={"h-12"}
+            rounded={"rounded-xl"}
+            handleInput={handleInput}
+          />
+          <h2 className="text-center font-extrabold">To</h2>
+          <FormField
+            type={"date"}
+            stateName={"toDate"}
+            name={"To"}
+            width={"w-80"}
+            height={"h-12"}
+            rounded={"rounded-xl"}
+            handleInput={handleInput}
+          />
+
+          <h2 className="text-center font-extrabold">Guests</h2>
+
+          <FormField
+            type={"number"}
+            stateName={"guests"}
+            name={"Guests"}
+            width={"w-80"}
+            height={"h-12"}
+            rounded={"rounded-xl"}
+            marginBottom={"mb-10"}
+            min={0}
+            handleInput={handleInput}
+          />
+          <h2 className="text-center font-extrabold">Credit Card</h2>
+          <FormField
+            type={"text"}
+            placeholder={"Credit Card Number"}
+            stateName={"creditNumber"}
+            name={"Credit Number"}
+            width={"w-80"}
+            height={"h-12"}
+            rounded={"rounded-xl"}
+            min={0}
+            handleInput={handleInput}
+          />
+          <h2 className="text-center font-extrabold">Card Holder Name</h2>
+          <FormField
+            type={"text"}
+            placeholder={"Card Holder Name"}
+            stateName={"cardHolder"}
+            name={"Card Holder"}
+            width={"w-80"}
+            height={"h-12"}
+            rounded={"rounded-xl"}
+            marginBottom={"mb-4"}
+            min={0}
+            handleInput={handleInput}
+          />
+          <div className="flex justify-center">
+            <FormField
+              type={"text"}
+              placeholder={"CVC"}
+              stateName={"cvc"}
+              name={"CVC"}
+              width={"w-40"}
+              height={"h-12"}
+              rounded={"rounded-xl"}
+              min={0}
               handleInput={handleInput}
             />
-            <h2 className="text-center font-extrabold">To</h2>
-            <PropertyInputField
-              type={"date"}
-              stateName={"toDate"}
-              name={"To"}
+            <FormField
+              type={"text"}
+              placeholder={"Billing Zip code"}
+              stateName={"billingZipCode"}
+              name={"CVC"}
+              width={"w-40"}
+              height={"h-12"}
+              rounded={"rounded-xl"}
+              min={0}
               handleInput={handleInput}
             />
-            <h2 className="text-center font-extrabold">Guests</h2>
-            <PropertyInputField
-              type={"number"}
-              name={"Guests"}
-              stateName={"guests"}
-              handleInput={handleInput}
-            />
+          </div>
+          <div className="grid place-items-center">
             <SubmitButton
-              width={"w-72"}
-              name={"Submit"}
+              width={"w-48"}
+              marginTop={"mt-2"}
+              rounded={"rounded-xl"}
+              onHover={"hover:bg-blue-200"}
+              border={"border-2 border-black"}
+              name={"Checkout"}
               functionProp={handleSubmit}
             />
           </div>
-          <div></div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
