@@ -1,8 +1,8 @@
-import Image from "./Image";
-import SubmitButton from "./SubmitButton";
+import Image from "../general/Image";
+import SubmitButton from "../general/SubmitButton";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProperty, getUserProperties } from "../../redux/api-requests/propertyRequests";
+import { deleteProperty, getUserProperties } from "../../../redux/api-requests/propertyRequests";
 const HostPropertyCard = ({
   property,
   marginTop,

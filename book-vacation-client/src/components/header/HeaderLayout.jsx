@@ -1,6 +1,6 @@
 import SearchBar from "./SearchBar";
 import { useNavigate } from "react-router-dom";
-import Icon from "../shared-components/Icon";
+import Icon from "../shared-components/general/Icon";
 import { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 

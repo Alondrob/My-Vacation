@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { bookProperty, deleteBooking, getUserBookings } from "../../redux/api-requests/userRequests";
-import Image from "./Image";
-import SubmitButton from "./SubmitButton";
+import { bookProperty, deleteBooking, getUserBookings } from "../../../redux/api-requests/userRequests";
+import Image from "../general/Image";
+import SubmitButton from "../general/SubmitButton";
 
-const GuestPropertyCard = ({ property, key }) => {
+const FeedCard = ({ property, key }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -52,39 +52,15 @@ const GuestPropertyCard = ({ property, key }) => {
         <div className="flex justify-evenly border-2 border-black   ml-3 w-96 h-16  mb-4">
           <SubmitButton
             functionProp={handleClick}
-            id={property._id}
+            id={property?._id}
             name={"Book"}
-            width={"w-20"}
+            width={"w-36"}
             marginTop={"mt-2"}
             marginLeft={"ml-3"}
             rounded={"rounded-xl"}
             background={"bg-black"}
             textColor={"text-white"}
-            onHover={"hover:bg-gray-500"}
-          />
-          <SubmitButton
-            functionProp={handleClick}
-            id={property._id}
-            name={"Cancel Booking"}
-            width={"w-20"}
-            marginTop={"mt-2"}
-            marginLeft={"ml-3"}
-            rounded={"rounded-xl"}
-            background={"bg-black"}
-            textColor={"text-white"}
-            onHover={"hover:bg-gray-500"}
-          />
-          <SubmitButton
-            functionProp={handleClick}
-            id={property._id}
-            name={"Upload Photos"}
-            width={"w-20"}
-            marginTop={"mt-1"}
-            marginLeft={"ml-3"}
-            rounded={"rounded-xl"}
-            background={"bg-black"}
-            textColor={"text-white"}
-            onHover={"hover:bg-gray-500"}
+            onHover={"hover:bg-pink-500"}
           />
         </div>
       </div>
@@ -92,4 +68,4 @@ const GuestPropertyCard = ({ property, key }) => {
   );
 };
 
-export default GuestPropertyCard;
+export default FeedCard;

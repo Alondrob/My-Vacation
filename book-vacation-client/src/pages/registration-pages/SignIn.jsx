@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/header/HeaderLayout";
-import FormField from "../../components/shared-components/FormField";
-import RegistrationButton from "../../components/shared-components/RegistrationButton";
+import FormField from "../../components/shared-components/user-register/FormField";
+import RegistrationButton from "../../components/shared-components//user-register/RegistrationButton";
 import { loginUser } from "../../redux/api-requests/userRequests";
 
 const SignIn = () => {

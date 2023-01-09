@@ -81,7 +81,7 @@ const getUserBookings = async (req, res) => {
   console.log(userBookings)
   const bookingArr = new Array();
   for (let idx = 0; idx < userBookings.length; idx++) {
-    let bookedDates = await user.bookings[idx].dates;
+    let bookedDates = user.bookings[idx].dates;
     let bookedPlace = await PropertyModel.findById(
       user.bookings[idx].place
     ).exec();

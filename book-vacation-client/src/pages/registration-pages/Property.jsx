@@ -7,11 +7,11 @@ import { bookProperty } from "../../redux/api-requests/userRequests";
 import { selectProperties } from "../../redux/slices/propertySlice";
 
 import HeaderLayout from "../../components/header/HeaderLayout";
-import DateSearchBar from "../../components/shared-components/DateSearchBar";
-import SubmitButton from "../../components/shared-components/SubmitButton";
-import PropertyInputField from "../../components/shared-components/PropertyInputField";
-import Image from "../../components/shared-components/Image";
-import FormField from "../../components/shared-components/FormField";
+import DateSearchBar from "../../components/shared-components/general/DateSearchBar";
+import SubmitButton from "../../components/shared-components/general/SubmitButton";
+import PropertyInputField from "../../components/shared-components/host/PropertyInputField";
+import Image from "../../components/shared-components/general/Image";
+import FormField from "../../components/shared-components/user-register/FormField";
 
 const Property = () => {
   const params = useParams();
@@ -71,7 +71,7 @@ const Property = () => {
       cardCvc: bookingData.cardCvc,
     };
     dispatch(bookProperty(booking));
-    // navigate("/guest-page");
+      navigate("/guest-page");
   };
 
   return (

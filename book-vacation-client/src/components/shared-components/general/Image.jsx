@@ -8,14 +8,11 @@ import {
 
 const Image = ({ id }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const properties = useSelector((state) => state.property.properties);
-  const selectedProperty = properties.filter((item) => item._id === id);
-  const images = selectedProperty[0].image;
-
-  const handleClick = (id) => {
-    // navigate(`/image/${id}`);
-  };
-
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userBookedProperties = useSelector((state) => state.user.userBookings);
+  const selectedProperty = userBookedProperties?.filter((item) => item.property._id === id);
+  const images = selectedProperty[0]["property"].image;
+  // const images = "";
 
   const nextSlide = () => {
     setCurrentSlide(currentSlide === images.length - 1 ? 0 : currentSlide + 1);

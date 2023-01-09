@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import HeaderLayout from "../../components/header/HeaderLayout";
-import SubmitButton from "../../components/shared-components/SubmitButton";
-import FormField from "../../components/shared-components/FormField";
+import SubmitButton from "../../components/shared-components/general/SubmitButton";
+import FormField from "../../components/shared-components/user-register/FormField";
 import { createNewProperty } from "../../redux/api-requests/propertyRequests";
 
 import { useDispatch } from "react-redux";

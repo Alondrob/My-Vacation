@@ -21,6 +21,7 @@ import TryOut from "./pages/TryOut";
 
 const App = () => {
   const dispatch = useDispatch();
+  
   const [user, setUser] = useState("");
 
   useEffect( () => {

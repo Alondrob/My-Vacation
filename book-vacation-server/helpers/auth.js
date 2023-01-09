@@ -6,7 +6,7 @@ const secret =  '$2b$10$r4gSCRHAGdYRILBjomH/N'
 
 
 const generateAccessToken = (userObject) => {
-  return jwt.sign(userObject, secret, { expiresIn: "3600s" });
+  return jwt.sign(userObject, secret, { expiresIn: "24h" });
 };
 
 const verifyAccessToken = (token) => {

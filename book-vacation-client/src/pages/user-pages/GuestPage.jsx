@@ -1,44 +1,43 @@
 import { useDispatch, useSelector } from "react-redux";
 import HeaderLayout from "../../components/header/HeaderLayout";
-import SubmitButton from "../../components/shared-components/SubmitButton";
-import PlaceCard from "../../components/shared-components/PlaceCard";
+import SubmitButton from "../../components/shared-components/general/SubmitButton";
 import { useEffect, useState } from "react";
 import { getUserBookings } from "../../redux/api-requests/userRequests";
+import GuestPropertyCard from "../../components/shared-components/feed/FeedCard";
+import { useNavigate, useParams } from "react-router-dom";
+import GuestCard from "../../components/shared-components/guest/GuestCard";
+import { dateConverter } from "../../utils/dateConverter";
 
 const GuestPage = () => {
-  const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
-  const userBookings = useSelector(state => state.user.userBookings);
-
+  const navigate = useNavigate();
+  
+  const dispatch = useDispatch();
+  
+  const userBookings = useSelector((state) => state.user.userBookings);
 
   useEffect(() => {
     dispatch(getUserBookings());
-  }, [userBookings]);
+  }, []);
 
-
+  console.log(userBookings);
   return (
     <div>
       <HeaderLayout />
-      <div className="text-center font-extrabold italic mt-4 ">
-        {`Hey ${user.user.userName}!, Check out your bookings !!`}
-      </div>
-         <div className="grid grid-cols-3 mt-2">
+      <div className="bg-blue-300 ">
+        <div className="text-center  font-extrabold italic mt-0 ">
+          {`Hey ${user.user.userName}!, Check out your bookings !!`}
+        </div>
+        <div className="grid grid-cols-3 gap-6 mt-2">
           {userBookings.map((item, key) => (
-            <PlaceCard
-              marginTop={"mt-3"}
-              page={"guest"}
-              key={key}
-              id={item.property._id}
-              name={item.property.name}
-              city={item.property.city}
-              state={item.property.state}
-              country={item.property.country}
-              pricePerNight={item.property.pricePerNight}
-              startDate={item.dates[0]}
-              endDate={item.dates[item.dates.length - 1]}
+            <GuestCard
+              property={item.property}
+              startDate={dateConverter(item.dates[0])}
+              endDate={dateConverter(item.dates[item.dates.length - 1])}
             />
           ))}
         </div>
+      </div>
     </div>
   );
 };

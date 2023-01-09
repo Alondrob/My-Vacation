@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import HeaderLayout from "../../components/header/HeaderLayout";
-import FormField from "../../components/shared-components/FormField";
+import FormField from "../../components/shared-components/user-register/FormField";
 import { getUserProperties } from "../../redux/api-requests/userRequests";
-import SubmitButton from "../../components/shared-components/SubmitButton";
+import SubmitButton from "../../components/shared-components/general/SubmitButton";
 import { useEffect } from "react";
 import { getPropertyById, editProperty } from "../../redux/api-requests/propertyRequests";
 
