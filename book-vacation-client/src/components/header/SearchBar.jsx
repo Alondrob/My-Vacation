@@ -3,7 +3,7 @@ import { advanceSearch } from "../../features/misc-slices/searchSlice";
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
-const SearchBar = ({ setHeader, renderFormPage }) => {
+const SearchBar = () => {
   const dispatch = useDispatch();
   
 

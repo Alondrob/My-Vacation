@@ -79,7 +79,7 @@ const Property = () => {
       <HeaderLayout />
       <div className=" w-full h-full grid grid-cols-2  bg-gray-400">
         <div className="mt-24 ml-36">
-          <Image id={params.id} />
+          <Image property={property} />
           <div className="bg-black text-white  h-20 w-96 ml-3">
             <p className="ml-12 font-bold">{property?.name}</p>
             <p className="ml-12 font-bold">

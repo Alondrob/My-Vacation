@@ -11,16 +11,15 @@ import { dateConverter } from "../../utils/dateConverter";
 const GuestPage = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
-  
+
   const dispatch = useDispatch();
-  
+
   const userBookings = useSelector((state) => state.user.userBookings);
 
   useEffect(() => {
     dispatch(getUserBookings());
   }, []);
 
-  console.log(userBookings);
   return (
     <div>
       <HeaderLayout />
@@ -32,8 +31,9 @@ const GuestPage = () => {
           {userBookings.map((item, key) => (
             <GuestCard
               property={item.property}
-              startDate={dateConverter(item.dates[0])}
-              endDate={dateConverter(item.dates[item.dates.length - 1])}
+              dates={item.dates}
+              // startDate={dateConverter(item?.dates[0])}
+              // endDate={dateConverter(item?.dates[item.dates.length - 1])}
             />
           ))}
         </div>

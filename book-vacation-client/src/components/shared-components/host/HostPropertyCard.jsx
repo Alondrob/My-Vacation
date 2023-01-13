@@ -56,7 +56,7 @@ const HostPropertyCard = ({
     <div className="h-30 w-96    mt-2">
       {/* ***** top of the card ***** */}
       <div>
-        <Image id={property._id} />
+        <Image property={property} />
         {/* ***** Info par of the card ***** */}
         <div className="border-4 border-black block  ml-3 w-96  mt-0">
           <p className="text-white font-bold ">

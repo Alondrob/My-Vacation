@@ -8,10 +8,10 @@ const FeedCard = ({ property, key }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+  console.log("propertyCard", property._id)
     const handleClick = (name, id) => {
     switch (name) {
       case "Book":
-            // dispatch(bookProperty(property));
             navigate(`/property/${property._id}`)
         break;
       case "Cancel Booking":
@@ -28,7 +28,7 @@ const FeedCard = ({ property, key }) => {
     <div className="h-30 w-96    mt-2">
       GuestPropertyCard
       <div>
-        <Image id={property._id} />
+        <Image property={property} />
         {/* ***** Info par of the card ***** */}
         <div className="border-4 border-black block  ml-3 w-96  mt-0">
           <p className="text-white font-bold ">

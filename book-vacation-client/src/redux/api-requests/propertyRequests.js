@@ -12,9 +12,10 @@ export const getAllProperties = createAsyncThunk(
 export const getPropertyById = createAsyncThunk(
   "property/getPropertyById",
   async (id) => {
-    // console.log("request-id", id);
+    console.log("hitting")
+     console.log("request-id", id);
     const response = await axios.get(apiRoutes.property.getPropertyById(id));
-    //  console.log(response.data);
+     console.log(response.data);
     return response.data;
   }
 );
