@@ -1,17 +1,14 @@
 import React from 'react'
 import { Provider, useSelector } from "react-redux";
-import { Route, Navigate } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 
-const PrivateRoute = (props) => {
+const PrivateRoutes = (props) => {
     const { children } = props;
     const userData = localStorage.getItem('user')
     console.dir(userData)
-    if (!userData) {
-        return <Navigate to="/sign-in"/>
-    }
   return (
-    children
-  )
+    userData ? <Outlet /> : <Navigate to = { "/"} />
+   )
 }
 
-export default PrivateRoute
+export default PrivateRoutes;
